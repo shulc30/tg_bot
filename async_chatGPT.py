@@ -24,7 +24,12 @@ async def help_command(update, context):
     await update.message.reply_text('Вы можете пообщаться с chatGPT на любую тему.')
 
 async def gpt(update, context):
+
+    processing_message = await update.message.reply_text('Ваш вопрос обрабатывается...')
+
     res = await get_answer(update.message.text)
+
+    await processing_message.delete()
     await update.message.reply_text(res)
 
 def main():
